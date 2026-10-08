@@ -1,0 +1,17 @@
+{
+  "name": "だいなそー",
+  "short_name": "だいなそー",
+  "description": "グミちゃんを守るため修行する、やさしい戦士なそと過ごす冒険の拠点アプリ",
+  "lang": "ja",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#e9dcbf",
+  "theme_color": "#e9dcbf",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
