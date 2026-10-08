@@ -1,7 +1,7 @@
 // だいなそー: オフラインでも開けるようにする簡単なキャッシュ。
 // index.html を更新したら VERSION の数字を上げると、みんなの端末で新しいものに入れ替わる。
 // つんつ君と同じドメインなので、消すのは「dinaso-」で始まる自分のキャッシュだけ。
-var VERSION = "dinaso-v1";
+var VERSION = "dinaso-v2";
 var FILES = ["./", "index.html", "manifest.webmanifest", "icon-180.png", "icon-192.png", "icon-512.png"];
 self.addEventListener("install", function (e) { e.waitUntil(caches.open(VERSION).then(function (c) { return Promise.all(FILES.map(function (f) { return c.add(new Request(f, { cache: "reload" })); })); }).then(function () { return self.skipWaiting(); })); });
 self.addEventListener("activate", function (e) {

@@ -197,5 +197,27 @@ s=s[:i]+s[j:]
 R("padding: 9px 14px 8px; font: 400 1.02rem/1.5 var(--font-body);","padding: 9px 14px 8px; font: 400 1.02rem/1.55 var(--font-display);")
 R(".say.angry { background: #ffe3dc; color: #a32a12; font-family: var(--font-display); font-weight: 400; }",".say.angry { background: #2b1f3a; color: #ffe9a8; }")
 R(".say.angry::after { background: #ffe3dc; }",".say.angry::after { background: #2b1f3a; }")
+# ---------- bingo: auto-mark, slower calls (tuntu d4fc2df) ----------
+R("""      gOn(function (v) {
+        var n = +v; if (over || n !== cur || gM[n]) return;
+        gM[n] = 1; sndOk(); draw("マーク！");
+        if (line(gC, gM)) end(true);
+      });
+    }""","""    }""")
+R("""      cur = order[k]; draw("カードの 同じ数字を タップしてね！"); say(cur + "！", 1400); sndPop();
+      gT(function () {
+        if (over) return;
+        if (tC.indexOf(cur) >= 0 && Math.random() < .75) { tM[cur] = 1; draw(""); if (line(tC, tM)) { end(false); return; } }
+      }, 1100);
+      gT(call, 1900);""","""      cur = order[k]; draw("数字が出たら 自動でマークされる"); say(cur + "！", 1800); sndPop();
+      gT(function () {
+        if (over) return;
+        if (gC.indexOf(cur) >= 0) { gM[cur] = 1; sndOk(); draw("マーク！"); if (line(gC, gM)) { end(true); return; } }
+      }, 1400);
+      gT(function () {
+        if (over) return;
+        if (tC.indexOf(cur) >= 0 && Math.random() < .75) { tM[cur] = 1; draw(""); if (line(tC, tM)) { end(false); return; } }
+      }, 2400);
+      gT(call, 3800);""")
 open(p,'w',encoding='utf-8').write(s)
 print('ok', s.count('つんつ'), s.count('グミ、'))
